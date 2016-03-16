@@ -22,10 +22,26 @@ class Instance extends JCMModel {
     return $this->extractXML($v);
   }
 
-  public function getModuleAttribute($v) {
-    $ex = explode('&', $v);
+  private $module;
 
-    return $ex[0];
+  private function explodeModule($m) {
+    $this->module = explode('&', $m);
+  }
+
+  public function getModuleAttribute($v) {
+    $this->explodeModule($v);
+
+    return $this->module[0];
+  }
+
+  public function getSubModuleAttribute($v) {
+    if (empty($this->module[1])) {
+      return FALSE;
+    }
+
+    $ex = explode('=', $this->module[1]);
+
+    return !empty($ex[1]) ? $ex[1] : false;
   }
 
 }
