@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/{url}.html', 'InstanceController@index');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

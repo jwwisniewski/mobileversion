@@ -9,8 +9,12 @@ abstract class JCMModel extends Model {
   protected $connection = 'mysql';
 
   protected function extractXML($v) {
-    $xml = simplexml_load_string($v);
-    return (string) $xml->pl;
+    try {
+      $xml = simplexml_load_string($v);
+      return (string) $xml->pl;
+    } catch (\ErrorException $e) {
+      return $v;
+    }
   }
 
   protected function transliterateString($txt) {
