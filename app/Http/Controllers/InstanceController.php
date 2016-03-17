@@ -6,11 +6,18 @@ use App\Http\Controllers\Controller;
 
 class InstanceController extends Controller {
 
+  /**
+   *
+   * @var \App\Instance 
+   */
+  private $matchedInstance;
+
   private function matchInstance($url) {
     $instances = \App\Instance::all();
 
     foreach ($instances as $instance) {
       if ($instance->name == $url) {
+        $this->matchedInstance = $instance;
         return [
             $instance->module,
             $instance->sub_module,
@@ -27,15 +34,11 @@ class InstanceController extends Controller {
 
     if ($module == \App\Subpage::MODULE_NAME) {
       $payload = \App\Subpage::find($subModule);
-
-      dd($payload->title);
     } else {
-      
+      $payload = $this->matchedInstance;
     }
 
-    dd($module, $subModule);
-
-//    return View::
+    return view('index', $payload);
   }
 
 }
