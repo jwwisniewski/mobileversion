@@ -1,5 +1,5 @@
 @extends('master')
 
 @section('content')
-    main page
+module output
 @endsection

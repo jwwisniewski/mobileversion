@@ -11,6 +11,11 @@ class InstanceController extends Controller {
    * @var \App\Instance 
    */
   private $matchedInstance;
+  private $toplinks;
+
+  public function __construct() {
+    $this->toplinks = \App\NavMenu::topLinks();
+  }
 
   private function matchInstance($url) {
     $instances = \App\Instance::all();
@@ -24,26 +29,42 @@ class InstanceController extends Controller {
         ];
       }
     }
-
     return false;
   }
 
-  public function index($url) {
+  public function index() {
 
-    list($module, $subModule) = $this->matchInstance($url);
+    $payload = new \stdClass();
 
-    if ($module == \App\Subpage::MODULE_NAME) {
-      $payload = \App\Subpage::find($subModule);
-    } else {
-      $payload = $this->matchedInstance;
+    foreach (\App\Settings::defaultSEO() as $setting) {
+      $payload->{$setting->pole} = $setting->wartosc;
     }
-    
+
     $data = [
         'payload' => $payload,
-        'links' => \App\NavMenu::topLinks(),
+        'links' => $this->toplinks,
     ];
 
     return view('index', $data);
   }
 
+  public function instance($instance) {
+
+    list($module, $subModule) = $this->matchInstance($instance);
+
+    if ($module == \App\Subpage::MODULE_NAME) {
+      return view('subpage', [
+          'payload' => \App\Subpage::find($subModule),
+          'links' => $this->toplinks,
+      ]);
+    } else {
+//      $output = \App::make('\\App\\' . ucfirst($this->matchedInstance->module));
+//      dd($output);
+      return view('instance', [
+          'payload' => $this->matchedInstance,
+          'links' => $this->toplinks,
+//          'content' => $this->toplinks,
+      ]);
+    }
+  }
 }
