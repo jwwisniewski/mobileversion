@@ -37,8 +37,13 @@ class InstanceController extends Controller {
     } else {
       $payload = $this->matchedInstance;
     }
+    
+    $data = [
+        'payload' => $payload,
+        'links' => \App\NavMenu::topLinks(),
+    ];
 
-    return view('index', $payload);
+    return view('index', $data);
   }
 
 }
