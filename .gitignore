@@ -5,4 +5,6 @@ Homestead.json
 /nbproject
 .env
 /public/build/
+/public/js/
 /public/css/
+/bower_components/

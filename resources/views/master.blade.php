@@ -7,9 +7,9 @@
     <meta name="description" content="{!!$payload->description !!}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ elixir('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/theme.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
-    <link rel="stylesheet" href="{{ elixir('css/icomoon.css') }}">
 
     <link rel="shortcut icon" href="img3/ico/32.png" sizes="32x32" type="image/png"/>
     <link rel="apple-touch-icon-precomposed" href="img3/ico/60.png" type="image/png"/>
@@ -187,11 +187,10 @@
 
     </div>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/placeholders.min.js"></script>
-    <script type="text/javascript" src="js/custom.js"></script>
-    <script type="text/javascript" src="js/ga.js"></script>
+    <script type="text/javascript" src="{{elixir('js/vendor.js')}}"></script>
+    <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>
+    <!--<script type="text/javascript" src="js/custom.js"></script>-->
+    <!--<script type="text/javascript" src="js/ga.js"></script>-->
   </body>
 
 </html>
