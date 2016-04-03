@@ -29,7 +29,7 @@ class InstanceController extends Controller {
         ];
       }
     }
-    return false;
+    throw new \App\Exceptions\InstanceNotFoundException('No instance for "' . \Illuminate\Support\Facades\Request::path() . '" url found');
   }
 
   public function index() {
