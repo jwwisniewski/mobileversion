@@ -4,7 +4,6 @@ namespace App;
 
 class Subpage extends JCMModel {
 
-  const MODULE_NAME = 'subpage';
   /**
    * The table associated with the model.
    *

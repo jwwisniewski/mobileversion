@@ -3,8 +3,8 @@
 @section('content')
 <div class="page-header">
   <h1>
-    {!! $payload->title !!}
+    {!! $matchedInstance->title !!}
   </h1>
 </div>
-{!! $payload->tresc !!}
+{!! $matchedInstance->tresc !!}
 @endsection

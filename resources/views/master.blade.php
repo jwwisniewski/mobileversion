@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>{!! $payload->title !!}</title>
-    <meta name="keywords" content="{!! $payload->keywords !!}">
-    <meta name="description" content="{!!$payload->description !!}">
+    <title>{!! $matchedInstance->title !!}</title>
+    <meta name="keywords" content="{!! $matchedInstance->keywords !!}">
+    <meta name="description" content="{!!$matchedInstance->description !!}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">

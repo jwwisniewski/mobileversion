@@ -53,23 +53,17 @@ class InstanceController extends Controller {
 
   public function instance($instance) {
 
-      list($module, $subModule) = $this->matchInstance($instance);
+    list($module, $subModule) = $this->matchInstance($instance);
 
-      if ($module == \App\Subpage::MODULE_NAME) {
-        return view('subpage', [
-            'payload' => \App\Subpage::find($subModule),
-            'topLinks' => $this->topLinks,
-            'bottomLinks' => $this->bottomLinks,
-        ]);
-      } else {
-//      $output = \App::make('\\App\\' . ucfirst($this->matchedInstance->module));
-//      dd($output);
-        return view('instance', [
-            'payload' => $this->matchedInstance,
-            'topLinks' => $this->topLinks,
-            'bottomLinks' => $this->bottomLinks,
-//          'content' => $this->toplinks,
-        ]);
-      }
+    $requestHandler = \App::make('\\App\\InstanceHandlers\\' . ucfirst($this->matchedInstance->module) . 'Handler');
+
+    return $requestHandler->instance([
+                'module' => $module,
+                'subModule' => $subModule,
+                'matchedInstance' => $this->matchedInstance,
+                'topLinks' => $this->topLinks,
+                'bottomLinks' => $this->bottomLinks,
+    ]);
   }
+
 }
