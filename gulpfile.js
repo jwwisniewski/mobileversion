@@ -11,6 +11,11 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
+elixir(function (mix) {
+  mix.sass(['bootstrap.scss'], 'public/css/bootstrap.css')
+          .less(['app.less'], 'public/css/app.css')
+          .styles(['icomoon/style.css'], 'public/css/icomoon.css')
+          .version(['css/bootstrap.css', 'css/app.css', 'css/icomoon.css'])
+          .copy('resources/assets/css/icomoon/fonts', 'public/build/css/fonts')
+          ;
 });
