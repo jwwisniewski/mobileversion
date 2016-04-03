@@ -1,5 +1,10 @@
 @extends('master')
 
 @section('content')
-    {!! $payload->tresc !!}
+<div class="page-header">
+  <h1>
+    {!! $payload->title !!}
+  </h1>
+</div>
+{!! $payload->tresc !!}
 @endsection
