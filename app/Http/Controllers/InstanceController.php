@@ -43,7 +43,7 @@ class InstanceController extends Controller {
     }
 
     $data = [
-        'payload' => $payload,
+        'matchedInstance' => $payload,
         'topLinks' => $this->topLinks,
         'bottomLinks' => $this->bottomLinks,
     ];
