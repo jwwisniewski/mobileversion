@@ -11,10 +11,12 @@ class InstanceController extends Controller {
    * @var \App\Instance 
    */
   private $matchedInstance;
-  private $toplinks;
+  private $topLinks;
+  private $bottomLinks;
 
   public function __construct() {
-    $this->toplinks = \App\NavMenu::topLinks();
+    $this->topLinks = \App\NavMenu::topLinks();
+    $this->bottomLinks = \App\NavMenu::bottomLinks();
   }
 
   private function matchInstance($url) {
@@ -42,7 +44,8 @@ class InstanceController extends Controller {
 
     $data = [
         'payload' => $payload,
-        'links' => $this->toplinks,
+        'topLinks' => $this->topLinks,
+        'bottomLinks' => $this->bottomLinks,
     ];
 
     return view('index', $data);
@@ -50,21 +53,23 @@ class InstanceController extends Controller {
 
   public function instance($instance) {
 
-    list($module, $subModule) = $this->matchInstance($instance);
+      list($module, $subModule) = $this->matchInstance($instance);
 
-    if ($module == \App\Subpage::MODULE_NAME) {
-      return view('subpage', [
-          'payload' => \App\Subpage::find($subModule),
-          'links' => $this->toplinks,
-      ]);
-    } else {
+      if ($module == \App\Subpage::MODULE_NAME) {
+        return view('subpage', [
+            'payload' => \App\Subpage::find($subModule),
+            'topLinks' => $this->topLinks,
+            'bottomLinks' => $this->bottomLinks,
+        ]);
+      } else {
 //      $output = \App::make('\\App\\' . ucfirst($this->matchedInstance->module));
 //      dd($output);
-      return view('instance', [
-          'payload' => $this->matchedInstance,
-          'links' => $this->toplinks,
+        return view('instance', [
+            'payload' => $this->matchedInstance,
+            'topLinks' => $this->topLinks,
+            'bottomLinks' => $this->bottomLinks,
 //          'content' => $this->toplinks,
-      ]);
-    }
+        ]);
+      }
   }
 }

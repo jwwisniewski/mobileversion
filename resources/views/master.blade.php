@@ -7,10 +7,9 @@
     <meta name="description" content="{!!$payload->description !!}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
-    {{-- link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/theme.css') }}">
-    <link rel="stylesheet" href="{{ elixir('css/app.css') }}"> --}}
-    <link rel="stylesheet" href="{{ elixir('css/combined.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
 
     <link rel="shortcut icon" href="img3/ico/32.png" sizes="32x32" type="image/png"/>
     <link rel="apple-touch-icon-precomposed" href="img3/ico/60.png" type="image/png"/>
@@ -30,7 +29,7 @@
         <a href="#" class="close-menu visible-xs"><i class="icon-close"></i></a>
         <h3 class="visible-xs">Navigation</h3>
         <ul class="nav-list text-center effect">
-          @foreach($links as $link)
+          @foreach($topLinks as $link)
           <li @if(Request::is($link->url.'.html'))class="active"@endif><a href="/{{ $link->url }}.html">{!! $link->nazwa !!}</a></li>
           @endforeach
         </ul>
@@ -41,7 +40,6 @@
             <li><a href="blog-article.html">Home Sweet Home: Turn...</a></li>
             <li><a href="blog-article.html">The Prisoner of Benda</a></li>
           </ul>
-          <a href="http://demo.angelostudio.net" class="btn btn-outline-w">More Templates</a>
         </div>
       </div>	
     </div>	
@@ -50,7 +48,7 @@
       <div id="main-nav" class="">
         <div class="container-fluid">	
           <div class="nav-header">
-            <a href="index.html" class="nav-brand">lalampa</a>
+            <a href="/" class="nav-brand">lalampa</a>
             <a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>
             <a class="nav-icon-outline cart pull-right" href="cart.html"><i class="icon-cart"></i><span class="badge">3</span></a>
           </div>
@@ -70,12 +68,11 @@
       <footer>
         <div class="container-fluid">
           <div class="pull-left copyright">
-            <p>STELLA <b>SHOP</b> &copy; 2014. Designed by <a href="http://www.angelostudio.net" target="_blank">Angelo Studio</a>.</p>
+            <p>&copy; {{ date('Y') }}</p>
             <ul class="nav-list effect">
-              <li><a href="terms-conditions.html">Delivery & Returns</a></li>
-              <li><a href="terms-conditions.html">Terms & Conditions</a></li>
-              <li><a href="privacy.html">Privacy</a></li>
-              <li><a href="faq.html">FAQ</a></li>
+              @foreach($bottomLinks as $link)
+              <li @if(Request::is($link->url.'.html'))class="active"@endif><a href="/{{ $link->url }}.html">{!! $link->nazwa !!}</a></li>
+              @endforeach
             </ul>	
           </div>
 
@@ -92,8 +89,7 @@
 
     </div>
 
-    {{-- <script type="text/javascript" src="{{elixir('js/vendor.js')}}"></script>
-  <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>--}}
-  <script type="text/javascript" src="{{elixir('js/combined.js')}}"></script>
-</body>
+    <script type="text/javascript" src="{{elixir('js/vendor.js')}}"></script>
+    <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>
+  </body>
 </html>

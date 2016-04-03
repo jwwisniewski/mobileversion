@@ -18,8 +18,15 @@ class NavMenu extends JCMModel {
    */
   protected $primaryKey = 'id_menu';
 
+  const TOPLINKS = 31;
+  const BOTTOMLINKS = 32;
+
   public function scopeTopLinks($query) {
-    return $query->where('widoczne', 1)->where('instance', 31)->orderBy('pozycja')->get(['nazwa', 'url']);
+    return $query->where('widoczne', 1)->where('instance', self::TOPLINKS)->orderBy('pozycja')->get(['nazwa', 'url']);
+  }
+
+  public function scopeBottomLinks($query) {
+    return $query->where('widoczne', 1)->where('instance', self::BOTTOMLINKS)->orderBy('pozycja')->get(['nazwa', 'url']);
   }
 
   public function getNazwaAttribute($v) {
@@ -29,9 +36,10 @@ class NavMenu extends JCMModel {
   public function getUrlAttribute($v) {
 
     $ex = explode('=', $v);
-    
+
     $instance = Instance::where('id_instance', $ex[1])->get()->first();
-    
+
     return $instance->name;
   }
+
 }
