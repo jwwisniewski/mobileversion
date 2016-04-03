@@ -7,9 +7,10 @@
     <meta name="description" content="{!!$payload->description !!}">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
+    {{-- link rel="stylesheet" href="{{ elixir('css/vendor.css') }}">
     <link rel="stylesheet" href="{{ elixir('css/theme.css') }}">
-    <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+    <link rel="stylesheet" href="{{ elixir('css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ elixir('css/combined.css') }}">
 
     <link rel="shortcut icon" href="img3/ico/32.png" sizes="32x32" type="image/png"/>
     <link rel="apple-touch-icon-precomposed" href="img3/ico/60.png" type="image/png"/>
@@ -17,10 +18,10 @@
     <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img3/ico/120.png" type="image/png"/>
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="img3/ico/152.png" type="image/png"/>
 
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
   </head>
 
   <body id="home">
@@ -56,110 +57,15 @@
         </div>
       </div>
 
-      <div class="container-fluid productlist">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-8">
-            <a href="product1.html">
-              <img src="img3/vase_1a.jpg" class="img-responsive" alt="item">
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">14.00</span>
-                </span>
-              </span>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <a href="product2.html">
-              <img src="img3/vase_2a.jpg"  class="img-responsive" alt="item">
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">28.00</span>
-                </span>
-              </span>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <a href="product3.html">
-              <img src="img3/vase_3a.jpg"  class="img-responsive" alt="item">
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">24.00</span>
-                </span>
-              </span>
-            </a>
+          <div class="col-sm-12">
+            @yield('content')
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-4 special">
-            <div class="col-sm-12">
-              <a href="product4.html">
-                <img src="img3/vase_4a.jpg"  class="img-responsive" alt="item">
-                <span class="productlist-price-container">
-                  <span class="product-price">
-                    <span class="price">16.00</span>
-                  </span>
-                </span>
-              </a>
-            </div>
-            <div class="col-sm-12">
-              <a href="product5.html">
-                <img src="img3/vase_5a.jpg"  class="img-responsive" alt="item">
-                <div class="productlist-label">
-                  <span class="sale-label">Sale</span>
-                </div>
-                <span class="productlist-price-container">
-                  <span class="product-price">
-                    <span class="price">54.00</span>
-                    <span class="original-price">
-                      <span class="price">65.00</span>
-                    </span>
-                  </span>
-                </span>
-              </a>						
-            </div>
-          </div>
-          <div class="col-sm-8">
-            <a href="product6.html">
-              <img src="img3/vase_6a.jpg" class="img-responsive" alt="item">
-              <div class="productlist-label">
-                <span class="sold-out-label">Sold Out</span>
-              </div>
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">38.00</span>
-                </span>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="row" id="more-items">
-          <div class="col-sm-6">
-            <a href="product7.html">
-              <img src="img3/vase_7a.jpg"  class="img-responsive" alt="item">
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">17.00</span>
-                </span>
-              </span>
-            </a>
-          </div>
-          <div class="col-sm-6">
-            <a href="product8.html">
-              <img src="img3/vase_8a.jpg"  class="img-responsive" alt="item">
-              <span class="productlist-price-container">
-                <span class="product-price">
-                  <span class="price">21.00</span>
-                </span>
-              </span>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 text-center show-more">
-            <a href="#" class="btn btn-outline" id="showmore">Show more</a>
-          </div>	
-        </div>	
       </div>
+
+
 
       <footer>
         <div class="container-fluid">
@@ -183,14 +89,11 @@
         </div>
       </footer>
 
-      @yield('content')
 
     </div>
 
-    <script type="text/javascript" src="{{elixir('js/vendor.js')}}"></script>
-    <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>
-    <!--<script type="text/javascript" src="js/custom.js"></script>-->
-    <!--<script type="text/javascript" src="js/ga.js"></script>-->
-  </body>
-
+    {{-- <script type="text/javascript" src="{{elixir('js/vendor.js')}}"></script>
+  <script type="text/javascript" src="{{elixir('js/app.js')}}"></script>--}}
+  <script type="text/javascript" src="{{elixir('js/combined.js')}}"></script>
+</body>
 </html>
