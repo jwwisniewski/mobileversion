@@ -1,4 +1,5 @@
 /vendor
+/stellashop.1.0/
 /node_modules
 Homestead.yaml
 Homestead.json
@@ -8,3 +9,6 @@ Homestead.json
 /public/js/
 /public/css/
 /bower_components/
+/public/convert40/
+/public/img3/
+/.env.prod
