@@ -10,17 +10,17 @@ elixir(function (mix) {
           .scripts([
             paths.jquery + '/jquery.js',
             paths.bootstrap + '/js/bootstrap.js',
-            paths.placeholders + '/placeholders.js',
+            paths.placeholders + '/placeholders.js'
           ], 'public/js/vendor.js', './')
           .scripts([
             'app.js'
           ], 'public/js/app.js')
           .styles([
-            paths.bootstrap + '/css/bootstrap.css',
+            paths.bootstrap + '/css/bootstrap.css'
           ], 'public/css/vendor.css', './')
-          .styles(['icomoon/style.css', 'theme.css'], 'public/css/theme.css')
-          .less(['app.less'], 'public/css/app.css')
-          .version(['js/vendor.js', 'js/app.js', 'css/vendor.css','css/theme.css', 'css/app.css'])
+          .styles(['icomoon/style.css'], 'public/css/fonts.css')
+          .less(['app.less', 'theme.less'], 'public/css/app.css')
+          .version(['js/vendor.js', 'js/app.js', 'css/vendor.css','css/fonts.css', 'css/app.css'])
           .copy('resources/assets/css/icomoon/fonts', 'public/build/css/fonts')
           ;
 });
