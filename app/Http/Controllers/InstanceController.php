@@ -36,19 +36,19 @@ class InstanceController extends Controller {
 
   public function index() {
 
-    $payload = new \stdClass();
+    $seo = new \stdClass();
 
     foreach (\App\Settings::defaultSEO() as $setting) {
-      $payload->{$setting->pole} = $setting->wartosc;
+      $seo->{$setting->pole} = $setting->wartosc;
     }
 
-    $data = [
-        'matchedInstance' => $payload,
-        'topLinks' => $this->topLinks,
-        'bottomLinks' => $this->bottomLinks,
-    ];
+    $requestHandler = \App::make(\App\InstanceHandlers\ProduktyHandler::class);
 
-    return view('index', $data);
+    return $requestHandler->mainPage([
+                'matchedInstance' => $seo,
+                'topLinks' => $this->topLinks,
+                'bottomLinks' => $this->bottomLinks,
+    ]);
   }
 
   public function instance($instance) {
