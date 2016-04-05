@@ -31,7 +31,7 @@ class Produkty extends JCMModel {
   }
 
   public function scopeMainPage($query) {
-    return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->limit(3)->get();
+    return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->get();
   }
 
   public function fotos() {
