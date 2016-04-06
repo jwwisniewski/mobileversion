@@ -26,16 +26,20 @@ class Produkty extends JCMModel {
     return $this->transliterateString($this->title);
   }
 
-  public function scopeByCategory($query, $category_id) {
-    return $query->where('widoczny', 1)->where('kategoria', $category_id)->where('glowna', 1)->orderBy('pozycja')->get();
+  public function scopeByCategory($query, $category_id, $columns) {
+    return $query->where('widoczny', 1)->where('kategoria', $category_id)->where('glowna', 1)->orderBy('pozycja')->get($columns);
   }
 
-  public function scopeMainPage($query) {
-    return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->get();
+  public function scopeMainPage($query, $columns) {
+    return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->get($columns);
   }
 
   public function fotos() {
     return $this->hasMany(ProduktyFoto::class, 'produkty', 'id_produkty');
+  }
+
+  public function category() {
+    return $this->belongsTo(Category::class, 'id_kategoria', 'kategoria');
   }
 
 }

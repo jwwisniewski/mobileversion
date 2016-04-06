@@ -17,13 +17,13 @@ class ProduktyHandler {
 
   public function mainPage($data) {
 
-//    $data['payload'] = \App\Produkty::mainPage();
-    $data['payload'] = \App\Produkty::with('fotos')->mainPage();
+    $data['payload'] = \App\Produkty::with('fotos')->mainPage(['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
 
     return view('modules/produkty/list', $data);
   }
 
 }
+
 //
 //{{--
 //  
