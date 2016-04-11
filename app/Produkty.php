@@ -39,7 +39,7 @@ class Produkty extends JCMModel {
   }
 
   public function category() {
-    return $this->belongsTo(Category::class, 'id_kategoria', 'kategoria');
+    return $this->belongsTo(Category::class, 'kategoria', 'id_kategoria');
   }
 
 }

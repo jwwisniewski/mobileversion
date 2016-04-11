@@ -19,7 +19,7 @@ class ProduktyFoto extends JCMModel {
   protected $primaryKey = 'id_foto';
 
   public function produkt() {
-    return $this->belongsTo(Produkty::class, 'id_produkty', 'produkty');
+    return $this->belongsTo(Produkty::class, 'produkty', 'id_produkty');
   }
 
 }
