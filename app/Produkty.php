@@ -33,6 +33,10 @@ class Produkty extends JCMModel {
   public function scopeMainPage($query, $columns) {
     return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->get($columns);
   }
+  
+  public function scopeGetByCategoryId($query, $id, $columns) {
+    return $query->where('widoczny', 1)->whereIn('kategoria', $id)->orderBy('pozycja')->get($columns);
+  }
 
   public function fotos() {
     return $this->hasMany(ProduktyFoto::class, 'produkty', 'id_produkty');

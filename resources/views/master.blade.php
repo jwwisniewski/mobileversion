@@ -27,20 +27,22 @@
     <div class="container-fluid">
       <div class="menu-wrapper">
         <a href="#" class="close-menu visible-xs"><i class="icon-close"></i></a>
-        <h3 class="visible-xs">Navigation</h3>
+        <h3 class="visible-xs">{{ trans('ui.menu.headers.links') }}</h3>
         <ul class="nav-list text-center effect">
           @foreach($topLinks as $link)
-          <li @if(Request::is($link->url.'.html'))class="active"@endif><a href="/{{ $link->url }}.html">{!! $link->nazwa !!}</a></li>
+          <li @if(Request::is($link->url.'.html'))class="active"@endif>
+               <a href="/{{ $link->url }}.html">{!! $link->nazwa !!}</a>
+          </li>
           @endforeach
         </ul>
-        <div class="visible-xs mt-info">
-          <h3>Latest news</h3>
-          <ul>
-            <li><a href="blog-article.html">New collection</a></li>
-            <li><a href="blog-article.html">Home Sweet Home: Turn...</a></li>
-            <li><a href="blog-article.html">The Prisoner of Benda</a></li>
-          </ul>
-        </div>
+        <h3 class="visible-xs">{{ trans('ui.menu.headers.categories') }}</h3>
+        <ul class="nav-list text-center effect">
+          @foreach($categoryTree as $link)
+          <li @if(Request::is($link->moduleInstance->name.'/'.$link->url.'.html'))class="active"@endif>
+               <a href="/{{ $link->moduleInstance->name }}/{{ $link->url }}.html">{!! $link->title !!}</a>
+          </li>
+          @endforeach
+        </ul>
       </div>	
     </div>	
 

@@ -21,6 +21,20 @@ class ProduktyHandler {
 
     return view('modules/produkty/list', $data);
   }
+  
+  public function instance($data) {
+    
+    $matchedCategory = \App\Category::matchByUrl($data['subinstance'], ['id_kategoria', 'title']);
+    $ids = [];
+    $ids[] = $matchedCategory->id_kategoria;
+    foreach ($matchedCategory->children as $subCategory){
+      $ids[] = $subCategory->id_kategoria;
+    }
+    
+    $data['payload'] = \App\Produkty::with('fotos')->getByCategoryId($ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
+
+    return view('modules/produkty/list', $data);
+  }
 
 }
 

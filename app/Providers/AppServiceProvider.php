@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->share('categoryTree', \App\Category::with('children.moduleInstance', 'moduleInstance')->getTreeByParentId(0, ['id_kategoria', 'title', 'instance', 'rodzic']));
+        view()->share('topLinks', \App\NavMenu::topLinks());
+        view()->share('bottomLinks', \App\NavMenu::bottomLinks());
     }
 
     /**

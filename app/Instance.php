@@ -44,4 +44,12 @@ class Instance extends JCMModel {
     return !empty($ex[1]) ? $ex[1] : false;
   }
 
+  public function scopeGetUrlById($query, $id) {
+    return $query->where('id_instance', $id)->get(['name'])->first()->name;
+  }
+
+  public function shopCategories() {
+    return $this->hasMany(Category::class, 'instance', 'id_instance');
+  }
+
 }

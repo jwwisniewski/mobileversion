@@ -11,13 +11,6 @@ class InstanceController extends Controller {
    * @var \App\Instance 
    */
   private $matchedInstance;
-  private $topLinks;
-  private $bottomLinks;
-
-  public function __construct() {
-    $this->topLinks = \App\NavMenu::topLinks();
-    $this->bottomLinks = \App\NavMenu::bottomLinks();
-  }
 
   private function matchInstance($url) {
     $instances = \App\Instance::all();
@@ -46,12 +39,10 @@ class InstanceController extends Controller {
 
     return $requestHandler->mainPage([
                 'matchedInstance' => $seo,
-                'topLinks' => $this->topLinks,
-                'bottomLinks' => $this->bottomLinks,
     ]);
   }
 
-  public function instance($instance) {
+  public function instance($instance, $subinstance = null) {
 
     list($module, $subModule) = $this->matchInstance($instance);
 
@@ -60,9 +51,8 @@ class InstanceController extends Controller {
     return $requestHandler->instance([
                 'module' => $module,
                 'subModule' => $subModule,
+                'subinstance' => $subinstance,
                 'matchedInstance' => $this->matchedInstance,
-                'topLinks' => $this->topLinks,
-                'bottomLinks' => $this->bottomLinks,
     ]);
   }
 
