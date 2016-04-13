@@ -63,5 +63,6 @@
   </div>
   @endif
   @endforeach
+  @include('modules/produkty/pagination')
 </div>
 @endsection

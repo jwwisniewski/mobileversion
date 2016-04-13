@@ -39,7 +39,7 @@ class Category extends JCMModel {
   }
 
   public function scopeGetPaginatedByParentId($query, $perPage, $columns) {
-    return $query->where('rodzic', 0)->where('widoczny', 1)->orderBy('pozycja', 'asc')->select($columns)->paginate($perPage);
+    return $query->where('rodzic', 0)->where('widoczny', 1)->orderBy('pozycja', 'asc')->select($columns)->simplePaginate($perPage);
   }
 
   public function getUrlAttribute($v) {

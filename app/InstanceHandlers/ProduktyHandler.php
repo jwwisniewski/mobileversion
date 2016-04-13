@@ -38,7 +38,7 @@ class ProduktyHandler {
       $ids[] = $subCategory->id_kategoria;
     }
 
-    $data['payload'] = \App\Produkty::with('fotos')->getByCategoryId($ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
+    $data['payload'] = \App\Produkty::with('fotos')->getPaginatedByCategoryId(5, $ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
 
     return view('modules/produkty/list', $data);
   }
