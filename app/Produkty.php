@@ -39,7 +39,7 @@ class Produkty extends JCMModel {
   }
   
   public function scopeGetPaginatedByCategoryId($query, $perPage, $id, $columns) {
-    return $query->where('widoczny', 1)->whereIn('kategoria', $id)->orderBy('pozycja')->select($columns)->simplePaginate($perPage);
+    return $query->where('widoczny', 1)->whereIn('kategoria', $id)->orderBy('pozycja')->simplePaginate($perPage, $columns, 'p');
   }
 
   public function fotos() {
