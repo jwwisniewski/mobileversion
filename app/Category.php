@@ -52,5 +52,8 @@ class Category extends JCMModel {
     }
     throw new \App\Exceptions\InstanceNotFoundException('No category for "' . $url . '" url found');
   }
-
+  
+  public function scopeBrowseAll($query, $columns) {
+    return $query->where('widoczny', 1)->orderBy('pozycja')->get($columns);
+  }
 }

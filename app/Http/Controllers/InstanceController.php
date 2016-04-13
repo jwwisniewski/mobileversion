@@ -42,16 +42,40 @@ class InstanceController extends Controller {
     ]);
   }
 
-  public function instance($instance, $subinstance = null) {
+  public function instance($instance, $category = null, $product = null) {
 
     list($module, $subModule) = $this->matchInstance($instance);
 
     $requestHandler = \App::make('\\App\\InstanceHandlers\\' . ucfirst($this->matchedInstance->module) . 'Handler');
 
+    if (!empty($product)) {
+      return $requestHandler->product([
+                  'module' => $module,
+                  'subModule' => $subModule,
+                  'instance' => $instance,
+                  'category' => $category,
+                  'product' => $product,
+                  'matchedInstance' => $this->matchedInstance,
+      ]);
+    }
+
+    if (!empty($category)) {
+      return $requestHandler->category([
+                  'module' => $module,
+                  'subModule' => $subModule,
+                  'instance' => $instance,
+                  'category' => $category,
+                  'product' => $product,
+                  'matchedInstance' => $this->matchedInstance,
+      ]);
+    }
+
     return $requestHandler->instance([
                 'module' => $module,
                 'subModule' => $subModule,
-                'subinstance' => $subinstance,
+                'instance' => $instance,
+                'category' => $category,
+                'product' => $product,
                 'matchedInstance' => $this->matchedInstance,
     ]);
   }

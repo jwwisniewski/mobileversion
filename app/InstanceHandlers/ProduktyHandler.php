@@ -21,45 +21,26 @@ class ProduktyHandler {
 
     return view('modules/produkty/list', $data);
   }
-  
+
   public function instance($data) {
-    
-    $matchedCategory = \App\Category::matchByUrl($data['subinstance'], ['id_kategoria', 'title']);
+
+    $data['payload'] = \App\Category::getTreeByParentId(0, ['title', 'tresc']);
+
+    return view('modules/produkty/category_list', $data);
+  }
+
+  public function category($data) {
+
+    $matchedCategory = \App\Category::matchByUrl($data['category'], ['id_kategoria', 'title']);
     $ids = [];
     $ids[] = $matchedCategory->id_kategoria;
-    foreach ($matchedCategory->children as $subCategory){
+    foreach ($matchedCategory->children as $subCategory) {
       $ids[] = $subCategory->id_kategoria;
     }
-    
+
     $data['payload'] = \App\Produkty::with('fotos')->getByCategoryId($ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
 
     return view('modules/produkty/list', $data);
   }
 
 }
-
-//
-//{{--
-//  
-//    @foreach($payload as $key => $item)
-//    
-//    <div @if($key%3 == 2) class="col-sm-8" @else class="col-sm-4" @endif id="p{{$item->id_produkty}}">
-//      <a href="{{$item->url}}.html">
-//        <img src="/convert40/{{$item->fotos->first()->id_foto}}_mob.jpg" class="img-responsive" alt="item">
-//        <span class="productlist-price-container">
-//          <span class="product-price">
-//            <span class="price">{{$item->cena}}</span>
-//          </span>
-//        </span>
-//      </a>
-//    </div>
-//    
-//    @if($key%3 == 2)
-//  </div>
-//  <div class="row">
-//    @endif
-//
-//    @endforeach
-//  </div>
-//  
-//  --}}
