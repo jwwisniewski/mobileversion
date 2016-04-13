@@ -24,7 +24,7 @@ class ProduktyHandler {
 
   public function instance($data) {
 
-    $data['payload'] = \App\Category::getTreeByParentId(0, ['title', 'tresc']);
+    $data['payload'] = \App\Category::getPaginatedByParentId(3, ['title', 'tresc']);
 
     return view('modules/produkty/category_list', $data);
   }

@@ -7,4 +7,9 @@ return [
             'categories' => 'Kategorie',
         ],
     ],
+    'pagination' => [
+        'previous' => 'Poprzednia',
+        'next' => 'Następna',
+        'page' => 'strona',
+    ],
 ];
