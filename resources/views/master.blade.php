@@ -50,7 +50,7 @@
       <div id="main-nav" class="">
         <div class="container-fluid">	
           <div class="nav-header">
-            <a href="/" class="nav-brand">lalampa</a>
+            <a href="/" class="nav-brand"></a>
             <a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>
             <a class="nav-icon-outline cart pull-right" href="cart.html"><i class="icon-cart"></i><span class="badge">3</span></a>
           </div>
