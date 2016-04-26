@@ -1,4 +1,4 @@
-<a href="{{$item->url}}.html">
+<a href="/{{$instance}}/{{$item->category->url}}/{{$item->url}}.html">
   <img src="/convert40/{{$item->fotos->first()->id_foto}}_mob.jpg" class="img-responsive" alt="item" title="{{$item->title}}">
   @if($item->sprzedany || $item->magazyn)
   <div class="productlist-label">

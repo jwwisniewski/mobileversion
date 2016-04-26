@@ -15,9 +15,9 @@ Route::get('/', 'InstanceController@index');
 Route::get('/{instance}.html', 'InstanceController@instance')
         ->where('instance', '[a-z\-]+');
 Route::get('/{instance}/{subinstance}.html', 'InstanceController@instance')
-        ->where('instance', '[a-z\-]+')->where('subinstance', '[a-z\-]+');
+        ->where('instance', '[a-z\-]+')->where('subinstance', '[a-z0-9\-]+');
 Route::get('/{instance}/{subinstance}/{product}.html', 'InstanceController@instance')
-        ->where('instance', '[a-z\-]+')->where('subinstance', '[a-z\-]+')->where('product', '[a-z\-]+');
+        ->where('instance', '[a-z\-]+')->where('subinstance', '[a-z0-9\-]+')->where('product', '[a-z0-9\-]+');
 //Route::get('/{instance}/{subinstance}.html', 'InstanceController@subinstance')
 //        ->where('instance', '[a-z\-]+')->where('subinstance', '[a-z\-]+');
 

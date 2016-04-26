@@ -12,11 +12,26 @@ class InstanceController extends Controller {
    */
   private $matchedInstance;
 
-  private function matchInstance($url) {
+  private function matchInstanceByURL($url) {
     $instances = \App\Instance::all();
 
     foreach ($instances as $instance) {
       if ($instance->name == $url) {
+        $this->matchedInstance = $instance;
+        return [
+            $instance->module,
+            $instance->sub_module,
+        ];
+      }
+    }
+    throw new \App\Exceptions\InstanceNotFoundException('No instance for "' . \Illuminate\Support\Facades\Request::path() . '" url found');
+  }
+
+  private function matchInstanceByModule($module) {
+    $instances = \App\Instance::all();
+
+    foreach ($instances as $instance) {
+      if ($instance->module == $module) {
         $this->matchedInstance = $instance;
         return [
             $instance->module,
@@ -37,14 +52,17 @@ class InstanceController extends Controller {
 
     $requestHandler = \App::make(\App\InstanceHandlers\ProduktyHandler::class);
 
+    list($module, $subModule) = $this->matchInstanceByModule('produkty');
+
     return $requestHandler->mainPage([
                 'matchedInstance' => $seo,
+                'instance' => $this->matchedInstance->name,
     ]);
   }
 
   public function instance($instance, $category = null, $product = null) {
 
-    list($module, $subModule) = $this->matchInstance($instance);
+    list($module, $subModule) = $this->matchInstanceByURL($instance);
 
     $requestHandler = \App::make('\\App\\InstanceHandlers\\' . ucfirst($this->matchedInstance->module) . 'Handler');
 

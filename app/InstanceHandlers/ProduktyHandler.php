@@ -17,7 +17,7 @@ class ProduktyHandler {
 
   public function mainPage($data) {
 
-    $data['payload'] = \App\Produkty::with('fotos')->mainPage(['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
+    $data['payload'] = \App\Produkty::with(['fotos', 'category'])->mainPage(['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty', 'kategoria']);
 
     return view('modules/produkty/list', $data);
   }
@@ -38,9 +38,16 @@ class ProduktyHandler {
       $ids[] = $subCategory->id_kategoria;
     }
 
-    $data['payload'] = \App\Produkty::with('fotos')->getPaginatedByCategoryId(5, $ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty']);
+    $data['payload'] = \App\Produkty::with(['fotos', 'category'])->getPaginatedByCategoryId(5, $ids, ['title', 'cena', 'magazyn', 'sprzedany', 'id_produkty', 'kategoria']);
 
     return view('modules/produkty/list', $data);
+  }
+  
+    public function product($data) {
+
+    $data['payload'] = \App\Produkty::matchByUrl($data['product'], ['*']);
+
+    return view('modules/produkty/full', $data);
   }
 
 }
