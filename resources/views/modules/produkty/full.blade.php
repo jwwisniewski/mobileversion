@@ -1,44 +1,27 @@
 @extends('master')
 @section('content')
-<div class="container-fluid hidden-xs">
-  <div class="row">
-    <ol class="breadcrumb">
-      <li><a href="index.html">Shop</a></li>
-      <li class="active">Tuscan urns</li>
-    </ol>
-  </div>
-</div>
-
 <div class="container-fluid product">
   <div class="row visible-xs product-mobile">
     <div class="col-xs-12 text-center">
-      <h2 class="product-title">Tuscan urns</h2>
+      <h2 class="product-title"> {!! $payload->title !!} </h2>
       <div class="product-price">
-        <span class="price">14.00</span>
+        <span class="price">{{ $payload->cena }} {{ trans('produkty.price.currency') }}</span>
       </div>
     </div>
   </div>	
   <div class="row">
     <div class="col-sm-8 ">
-      <img src="img/vase_1a.jpg" class="product-img img-responsive" alt="item">
-      <img src="img/vase_1b.jpg" class="product-img img-responsive" alt="item">
-      <img src="img/vase_1c.jpg" class="product-img img-responsive" alt="item">
+      @foreach($payload->fotos as $foto)
+      <img src="/convert40/{{$foto->id_foto}}_mob.jpg" class="img-responsive" alt="item" title="{{$foto->title}}"><br>
+      @endforeach
     </div>
     <div class="col-sm-4 ">
-      <h2 class="product-title hidden-xs">Tuscan urns</h2>
+      <h2 class="product-title hidden-xs">{!! $payload->title !!}</h2>
       <div class="product-price hidden-xs">
-        <span class="price">14.00</span>
+        <span class="price">{{ $payload->cena }} {{ trans('produkty.price.currency') }}</span>
       </div>
       <div class="product-detail">
-        <p>Collect all of our hand-thrown vessels for endless arrangement possibilities, whether filled with flowers or dressed with beads.</p>
-        <ul>
-          <li>Holds objects, collections of stones or shells, or candles (sold separately) for a striking display.</li>
-          <li>Weighty bases are designed to counterbalance top-heavy stems.</li>
-          <li>Fluid design is finished with a cut rim.</li>
-          <li>Monogramming is available at an additional charge.</li>
-          <li>Monogram will be centered on the side of the bowl.</li>
-          <li>Small: 6.5" diameter, 7" high</li>
-        </ul>
+        {!! $payload->tresc !!}
       </div>
       <form  action="product1.html" method="POST" class="myform">
         <div class="form-group clearfix">
@@ -65,14 +48,6 @@
       </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-sm-8 ">
-      <div class="paging clearfix">
-        <a class="btn btn-outline pull-left" href="product2.html"><i class="icon-arrow-left2 left"></i><span>Previous</span><span class="hidden-xs"> Product</span></a>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 @endsection

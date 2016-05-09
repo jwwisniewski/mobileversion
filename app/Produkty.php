@@ -22,6 +22,10 @@ class Produkty extends JCMModel {
     return $this->extractXML($v);
   }
 
+  public function getTrescAttribute($v) {
+    return preg_replace('/' . preg_quote('($naglowek)') . '/i', '', parent::getTrescAttribute($v));
+  }
+
   public function getUrlAttribute($v) {
     return $this->transliterateString($this->title);
   }
@@ -33,11 +37,11 @@ class Produkty extends JCMModel {
   public function scopeMainPage($query, $columns) {
     return $query->where('widoczny', 1)->where('glowna', 1)->orderBy('pozycja')->orderBy($this->primaryKey)->simplePaginate(100, $columns, 'p');
   }
-  
+
   public function scopeGetByCategoryId($query, $id, $columns) {
     return $query->where('widoczny', 1)->whereIn('kategoria', $id)->orderBy('pozycja')->orderBy($this->primaryKey)->get($columns);
   }
-  
+
   public function scopeGetPaginatedByCategoryId($query, $perPage, $id, $columns) {
     return $query->where('widoczny', 1)->whereIn('kategoria', $id)->orderBy('pozycja')->orderBy($this->primaryKey)->simplePaginate($perPage, $columns, 'p');
   }
@@ -49,7 +53,7 @@ class Produkty extends JCMModel {
   public function category() {
     return $this->belongsTo(Category::class, 'kategoria', 'id_kategoria')->select(['id_kategoria', 'title']);
   }
-  
+
   public static function matchByUrl($url, $columns) {
     $products = \App\Produkty::with('fotos')->get($columns);
 
