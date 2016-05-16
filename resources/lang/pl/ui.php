@@ -12,4 +12,9 @@ return [
         'next' => 'Następna',
         'page' => 'strona',
     ],
+    'basket' => [
+        'button' => [
+            'add' => 'Dodaj do koszyka'
+        ],
+    ],
 ];

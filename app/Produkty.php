@@ -53,9 +53,13 @@ class Produkty extends JCMModel {
   public function category() {
     return $this->belongsTo(Category::class, 'kategoria', 'id_kategoria')->select(['id_kategoria', 'title']);
   }
+  
+  public function podstawy() {
+    return $this->belongsToMany(Podstawy::class, 'devel_podstawy_assoc', 'produkt', 'podstawa');
+  }
 
   public static function matchByUrl($url, $columns) {
-    $products = \App\Produkty::with('fotos')->get($columns);
+    $products = \App\Produkty::with(['fotos', 'podstawy'])->get($columns);
 
     foreach ($products as $product) {
       if ($product->url == $url) {

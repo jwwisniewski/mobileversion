@@ -4,9 +4,9 @@
   <div class="row visible-xs product-mobile">
     <div class="col-xs-12 text-center">
       <h2 class="product-title"> {!! $payload->title !!} </h2>
-      <div class="product-price">
+<!--      <div class="product-price">
         <span class="price">{{ $payload->cena }} {{ trans('produkty.price.currency') }}</span>
-      </div>
+      </div>-->
     </div>
   </div>	
   <div class="row">
@@ -17,33 +17,29 @@
     </div>
     <div class="col-sm-4 ">
       <h2 class="product-title hidden-xs">{!! $payload->title !!}</h2>
-      <div class="product-price hidden-xs">
+<!--      <div class="product-price hidden-xs">
         <span class="price">{{ $payload->cena }} {{ trans('produkty.price.currency') }}</span>
-      </div>
+      </div>-->
       <div class="product-detail">
         {!! $payload->tresc !!}
       </div>
       <form  action="product1.html" method="POST" class="myform">
-        <div class="form-group clearfix">
-          <label class="control-label">Size</label>
-          <select class="form-control">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-        </div>	
-
+        <h3>
+          Dostępne kolory wykończeń
+        </h3>
+        
         <ul class="product-colors">
-          <li class="selected"><a class="white" style="background-color:#FFF"> </a></li>
-          <li class=""><a style="background-color:#000"> </a></li>
-          <li class=""><a style="background-color:#49A3F1"> </a></li>
-          <li class=""><a style="background-color:#FF6279"> </a></li>
+          @foreach($payload->podstawy as $item)
+          <li><a title="{{$item->title}}" style="background: url(/podstawy/{{$item->id_podstawy}}.jpg) 0 0 no-repeat;"> </a></li>
+          @endforeach
         </ul>
+        
+        <div class="product-price">
+          <span class="price">{{ $payload->cena }} {{ trans('produkty.price.currency') }}</span>
+        </div>
 
         <div class="product-btn">
-          <a href="" class="btn">Add To Cart</a>
+          <a href="" class="btn">{{ trans('ui.basket.button.add') }}</a>
         </div>	
       </form>
     </div>
