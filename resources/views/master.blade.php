@@ -80,9 +80,7 @@
 
           <div class="pull-right copyright">
             <ul class="social-links">
-              <li><a href="https://twitter.com/angelo_studio"><i class="icon-twitter"></i></a></li>
-              <li><a href="http://dribbble.com/angelo_studio"><i class="icon-dribbble"></i></a></li>
-              <li><a href="http://www.pinterest.com/angelostudio/"><i class="icon-pinterest"></i></a></li>
+              <li><a href="https://www.facebook.com/LaLampa-158835430828892/"><i class="icon-facebook"></i></a></li>
             </ul>
           </div>
         </div>
