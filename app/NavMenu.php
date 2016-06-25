@@ -20,13 +20,16 @@ class NavMenu extends JCMModel {
 
   const TOPLINKS = 31;
   const BOTTOMLINKS = 32;
+  
+  protected $hiddenTop = [17, 24];
+  protected $hiddenBottom = [];
 
   public function scopeTopLinks($query) {
-    return $query->where('widoczne', 1)->where('instance', self::TOPLINKS)->orderBy('pozycja')->get(['nazwa', 'url']);
+    return $query->where('widoczne', 1)->where('instance', self::TOPLINKS)->whereNotIn('id_menu', $this->hiddenTop)->orderBy('pozycja')->get(['nazwa', 'url']);
   }
 
   public function scopeBottomLinks($query) {
-    return $query->where('widoczne', 1)->where('instance', self::BOTTOMLINKS)->orderBy('pozycja')->get(['nazwa', 'url']);
+    return $query->where('widoczne', 1)->where('instance', self::BOTTOMLINKS)->whereNotIn('id_menu', $this->hiddenBottom)->orderBy('pozycja')->get(['nazwa', 'url']);
   }
 
   public function getNazwaAttribute($v) {
