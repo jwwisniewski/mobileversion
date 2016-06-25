@@ -43,7 +43,7 @@ class ParseLinks {
     }
     
 //zakonczenia linków
-    $response->setContent(preg_replace('/href="([a-z\-\/]{1,})"/', 'href="$1.html"', $response->content()));
+    $response->setContent(preg_replace('/href="\/([a-z\-\/]{1,})"/', 'href="/$1.html"', $response->content()));
     
     return $response;
   }
