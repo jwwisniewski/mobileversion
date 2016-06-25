@@ -55,7 +55,7 @@ class InstanceController extends Controller {
     list($module, $subModule) = $this->matchInstanceByModule('produkty');
 
     return $requestHandler->mainPage([
-                'matchedInstance' => $seo,
+                'seo' => $seo,
                 'instance' => $this->matchedInstance->name,
     ]);
   }
@@ -74,6 +74,7 @@ class InstanceController extends Controller {
                   'category' => $category,
                   'product' => $product,
                   'matchedInstance' => $this->matchedInstance,
+                  'seo' => $this->matchedInstance,
       ]);
     }
 
@@ -85,6 +86,7 @@ class InstanceController extends Controller {
                   'category' => $category,
                   'product' => $product,
                   'matchedInstance' => $this->matchedInstance,
+                  'seo' => $this->matchedInstance,
       ]);
     }
 
@@ -95,6 +97,7 @@ class InstanceController extends Controller {
                 'category' => $category,
                 'product' => $product,
                 'matchedInstance' => $this->matchedInstance,
+                'seo' => $this->matchedInstance,
     ]);
   }
 

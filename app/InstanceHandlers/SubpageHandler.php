@@ -16,7 +16,7 @@ namespace App\InstanceHandlers;
 class SubpageHandler {
 
   public function instance($data){
-    $data['matchedInstance'] = \App\Subpage::find($data['subModule']);
+    $data['matchedInstance'] = $data['seo'] = \App\Subpage::find($data['subModule']);
     return view('modules/subpage', $data);
   }
 }
